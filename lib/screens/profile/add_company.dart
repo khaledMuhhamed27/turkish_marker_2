@@ -10,7 +10,6 @@ import 'package:turkesh_marketer/widgets/input_name.dart';
 import 'package:turkesh_marketer/widgets/my_button_form.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
 import 'package:turkesh_marketer/widgets/tow_button_for_add.dart';
-import 'package:turkesh_marketer/widgets/upload_file_input.dart';
 
 class AddCompanyScreen extends StatefulWidget {
   const AddCompanyScreen({super.key});
@@ -27,7 +26,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _adescriptionController = TextEditingController();
   final TextEditingController _websitUrlController = TextEditingController();
-  final TextEditingController _uploadFileController = TextEditingController();
+  // final TextEditingController _uploadFileController = TextEditingController();
 
   String? selectedName;
   Country? selectedCountry;
@@ -228,10 +227,10 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 ),
                 // Billing Address
                 SizedBox(height: 20),
-                NameTileInput(InputTile: "The company's license files"),
-                UploadFileInput(
-                  controller: _uploadFileController,
-                ),
+                // NameTileInput(InputTile: "The company's license files"),
+                // UploadFileInput(
+                //   controller: _uploadFileController,
+                // ),
                 SizedBox(height: 30),
                 TwoButton(
                   onPressed: () {},

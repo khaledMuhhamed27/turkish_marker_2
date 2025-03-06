@@ -19,10 +19,26 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-   
   final GoogleTranslator translator = GoogleTranslator();
   Map<int, String> translatedTitles = {};
   String currentLang = 'ar';
+  bool hasLoadedData = false; // ✅ لتجنب إعادة تحميل البيانات
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategoriesOnce(); // ✅ تحميل البيانات مرة واحدة فقط
+  }
+
+  void _loadCategoriesOnce() {
+    final categoryState = BlocProvider.of<CategoryBloc>(context).state;
+    if (categoryState is CategoryInitial && !hasLoadedData) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        BlocProvider.of<CategoryBloc>(context).add(LoadCategoriesEvent());
+        hasLoadedData = true; // ✅ عدم إعادة التحميل عند العودة
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +46,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final Color circleColor =
         isDarkMode ? Colors.black26 : Colors.blueGrey.shade50;
 
-    // تحديث اللغة عند تغيير `context.locale`
     String newLang = context.locale.languageCode;
     if (currentLang != newLang) {
       currentLang = newLang;
-      translatedTitles.clear(); // إعادة الترجمة عند تغيير اللغة
+      translatedTitles.clear();
     }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -57,6 +73,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   titleScreen: "Categories",
                   onRightIconTap: () {
                     Navigator.pushNamed(context, 'search');
+                    
                   },
                 ),
               ),
@@ -65,17 +82,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 child: BlocBuilder<CategoryBloc, CategoryState>(
                   builder: (context, state) {
                     if (state is CategoryLoading) {
-                      return LoadingWidgt(); // شاشة تحميل
+                      return LoadingWidgt();
                     }
 
                     if (state is CategoryLoaded) {
-                      final loadedState = state;
-                      _translateTitles(loadedState.categories); // ترجمة الفئات
-                      var myCategoryList = ListView.builder(
+                      _translateTitles(state.categories);
+                      return ListView.builder(
                         padding: EdgeInsets.all(0),
-                        itemCount: loadedState.categories.length,
+                        itemCount: state.categories.length,
                         itemBuilder: (context, index) {
-                          final category = loadedState.categories[index];
+                          final category = state.categories[index];
                           return CartegoryCard(
                             title: translatedTitles[index] ?? category.name,
                             subtitle: category.description,
@@ -95,15 +111,43 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           );
                         },
                       );
-                      return myCategoryList;
                     }
 
                     if (state is CategoryError) {
-                      final errorState = state;
-                      return Center(child: Text("خطأ: ${errorState.message}"));
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("حدث خطأ أثناء تحميل البيانات."),
+                            SizedBox(height: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                BlocProvider.of<CategoryBloc>(context)
+                                    .add(LoadCategoriesEvent());
+                              },
+                              child: Text("إعادة المحاولة"),
+                            ),
+                          ],
+                        ),
+                      );
                     }
 
-                    return SizedBox();
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("حدث خطأ أثناء تحميل البيانات."),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<CategoryBloc>(context)
+                                  .add(LoadCategoriesEvent());
+                            },
+                            child: Text("إعادة المحاولة"),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                 ),
               ),
@@ -114,7 +158,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 
-  // تحديث الترجمات عند تغيير اللغة أو عدم وجود ترجمات سابقة
   void _translateTitles(List categories) async {
     if (currentLang == 'en' || translatedTitles.length == categories.length) {
       return;
@@ -136,25 +179,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
         }
       }
 
-      await Future.wait(translationFutures); // انتظر جميع الترجمات
+      await Future.wait(translationFutures);
 
       setState(() {
         translatedTitles.addAll(tempTranslations);
       });
     } catch (e) {
       print("⚠️ خطأ أثناء الترجمة: $e");
-    }
-  }
-
-  // تحميل الفئات فقط عند عدم وجود بيانات محملة مسبقًا
-  @override
-  void initState() {
-    super.initState();
-    final categoryState = BlocProvider.of<CategoryBloc>(context).state;
-    if (categoryState is CategoryInitial) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        BlocProvider.of<CategoryBloc>(context).add(LoadCategoriesEvent());
-      });
     }
   }
 }

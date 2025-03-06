@@ -10,35 +10,34 @@ class TwoButton extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: ElevatedButton(
+            child: MaterialButton(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
               onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF475467),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+              color: Color(0xff475467),
               child: Text(
                 "Add Company",
-                style: TextStyle(color: Color(0xFFFFFFFF)),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
           SizedBox(width: 10),
           Expanded(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFFFFFF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+            child: MaterialButton(
+              elevation: 2,
+              padding: EdgeInsets.symmetric(vertical: 10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              onPressed: onPressed,
+              color: Colors.grey[100],
               child: Text(
                 "Skip To Home Page",
-                style: TextStyle(color: Color(0xFF475467)),
+                style: TextStyle(
+                  color: Color(0xff475467),
+                ),
               ),
             ),
           ),

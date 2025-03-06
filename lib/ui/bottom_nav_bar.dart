@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
-import 'package:turkesh_marketer/screens/home/categories/tim_categories.dart';
+import 'package:turkesh_marketer/screens/home/categories/category_screen.dart';
 import 'package:turkesh_marketer/ui/nav_bar_tabs/tab_bar_dearship.dart';
 import 'package:turkesh_marketer/ui/nav_bar_tabs/tab_bar_homs.dart';
 import 'package:turkesh_marketer/screens/home/companies.dart';
@@ -156,7 +156,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
         ),
         PersistentTabConfig(
-          screen: TimCategories(),
+          screen: CategoryScreen(),
           item: ItemConfig(
             activeForegroundColor: (selectedIndex == 4)
                 ? (Theme.of(context).brightness == Brightness.dark

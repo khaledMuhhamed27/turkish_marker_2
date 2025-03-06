@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_state.dart';
 import 'package:turkesh_marketer/model/categories_modell.dart';
+import 'package:turkesh_marketer/screens/home/categories/show_select_categories.dart';
 import 'package:turkesh_marketer/screens/home/categories/tim_categories.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 
@@ -32,6 +33,9 @@ class ShowSubCategoryScrren extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => TimCategories()),
                 );
               },
+              onRightIconTap: () {
+                Navigator.pushNamed(context, 'search');
+              },
               myRightButton: true,
               titleScreen: category.name,
             ),
@@ -41,13 +45,8 @@ class ShowSubCategoryScrren extends StatelessWidget {
             child: BlocListener<CategoryBloc, CategoryState>(
               listener: (context, state) {
                 if (state is CategoryLoading) {
-                  // عند تحميل البيانات، يمكن عرض مؤشر تحميل أو تنفيذ أي شيء آخر
                 } else if (state is CategoryError) {
-                  // في حال حدوث خطأ أثناء تحميل البيانات
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error: ${state.message}')),
-                  );
-                }
+                } else {}
               },
               child: BlocBuilder<CategoryBloc, CategoryState>(
                 builder: (context, state) {
@@ -66,6 +65,18 @@ class ShowSubCategoryScrren extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final subcategory = state.subcategories[index];
                         return ListTile(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ShowSelectCategories(
+                                  importModel: subcategory.parentId.toString(),
+                                ),
+                              ),
+                            );
+                            print(
+                                "Parent_id=${subcategory.parentId.toString()}");
+                          },
                           title: Text(subcategory.name),
                           subtitle: Text(subcategory.description),
                         );
