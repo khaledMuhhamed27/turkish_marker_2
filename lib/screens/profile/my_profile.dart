@@ -34,8 +34,6 @@ class _MyProfileState extends State<MyProfile> {
                 titleScreen: "profile_sc".tr(),
                 onLeftIconTap: () {
                   Navigator.pop(context);
-
-                  print("Left icon tapped");
                 },
               ),
               // sized
@@ -63,7 +61,6 @@ class _MyProfileState extends State<MyProfile> {
                             builder: (context) => EditProfileScreen(),
                           ),
                         );
-                        print("Form Edit");
                       },
                       titleC: 'edit_profile'.tr(),
                     ), // Change Language
@@ -123,7 +120,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 titleC: 'contact'.tr(),
               ),
@@ -137,7 +133,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 titleC: 'our_partners'.tr(),
               ),
@@ -151,7 +146,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 titleC: 'terms_cond'.tr(),
               ),
@@ -165,7 +159,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 titleC: 'index_prod'.tr(),
               ),
@@ -180,7 +173,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 titleC: 'other'.tr(),
               ),
@@ -193,7 +185,6 @@ class _MyProfileState extends State<MyProfile> {
                       builder: (context) => EditProfileScreen(),
                     ),
                   );
-                  print("Form Edit");
                 },
                 iconUrl: 'assets/images/tag.svg',
                 titleC: 'membership_plans'.tr(),

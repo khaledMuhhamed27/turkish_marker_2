@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/select_categories.dart/bloc/select_posts_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/select_categories.dart/bloc/select_posts_event.dart';
 import 'package:turkesh_marketer/bloc/bloc/select_categories.dart/bloc/select_posts_state.dart';
+import 'package:turkesh_marketer/widgets/loading_widgt.dart';
 import 'package:turkesh_marketer/widgets/my_card_list.dart';
 
 class ShowSelectCategories extends StatelessWidget {
@@ -33,7 +34,7 @@ class ShowSelectCategories extends StatelessWidget {
         child: BlocBuilder<PostBloc, SelectPostsState>(
           builder: (context, state) {
             if (state is LoadingPostsState) {
-              return Center(child: CircularProgressIndicator());
+              return LoadingWidgt();
             }
 
             if (state is LoadedPostsState) {

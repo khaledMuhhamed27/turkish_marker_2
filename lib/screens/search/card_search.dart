@@ -6,7 +6,7 @@ import 'package:turkesh_marketer/constants/base_url.dart';
 import 'package:turkesh_marketer/constants/created_at_intl.dart';
 
 // ignore: must_be_immutable
-class MyCardList extends StatelessWidget {
+class MySearchCard extends StatelessWidget {
   final int? id;
   final String? imageUrl;
   final String title;
@@ -15,7 +15,7 @@ class MyCardList extends StatelessWidget {
   final int? credits;
   final String createdAt;
   void Function()? onTap;
-  MyCardList({
+  MySearchCard({
     super.key,
     this.onTap,
     this.id,
@@ -32,7 +32,7 @@ class MyCardList extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        margin: EdgeInsets.only(bottom: 20),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Color(0xFFFFFFFF),
@@ -69,6 +69,7 @@ class MyCardList extends StatelessWidget {
             SizedBox(width: 10),
             // TEXTS
             Expanded(
+           
               child: Column(
                 children: [
                   Row(
@@ -170,7 +171,7 @@ class MyCardList extends StatelessWidget {
                                 AutoSizeText(
                                   "$credits Credits",
                                   style: TextStyle(
-                                      fontSize: 14), // تعديل الحجم حسب الحاجة
+                                      fontSize: 10), // تعديل الحجم حسب الحاجة
                                 ),
                               ],
                             ),
@@ -190,9 +191,9 @@ class MyCardList extends StatelessWidget {
                                 Expanded(
                                   child: AutoSizeText(
                                     formatDate(createdAt),
-                                    maxLines: 2,
+                                    maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(fontSize: 10),
                                   ),
                                 ),
                               ],

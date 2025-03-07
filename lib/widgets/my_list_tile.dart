@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turkesh_marketer/theme/setting_theme.dart';
@@ -73,7 +74,7 @@ class MyListTiletheme extends StatelessWidget {
           ),
           tileColor: Theme.of(context).cardColor,
           title: Text(
-            "Change Theme",
+            "change_theme".tr(),
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).dividerColor),

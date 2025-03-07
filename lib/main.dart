@@ -5,6 +5,7 @@ import 'package:turkesh_marketer/api/categories_service.dart';
 import 'package:turkesh_marketer/api/cooperation_service.dart';
 import 'package:turkesh_marketer/api/get_user_data_service.dart';
 import 'package:turkesh_marketer/api/request_service.dart';
+import 'package:turkesh_marketer/api/search_service.dart';
 import 'package:turkesh_marketer/api/show_select_categ_service.dart';
 import 'package:turkesh_marketer/api/tender_service.dart';
 import 'package:turkesh_marketer/bloc/bloc/cooperation_bloc.dart';
@@ -18,6 +19,7 @@ import 'package:turkesh_marketer/bloc/companies_event.dart';
 import 'package:turkesh_marketer/bloc/theme_bloc.dart';
 import 'package:turkesh_marketer/bloc/user_data_bloc/bloc/user_data_bloc.dart';
 import 'package:turkesh_marketer/cubit/local_cubit.dart';
+import 'package:turkesh_marketer/cubit/search/cubit/search_cubit.dart';
 import 'package:turkesh_marketer/repository/all_categories_repo.dart';
 import 'package:turkesh_marketer/repository/all_companies_repo.dart';
 import 'package:turkesh_marketer/repository/all_cooperations_repo.dart';
@@ -25,6 +27,7 @@ import 'package:turkesh_marketer/repository/all_posts_repo.dart';
 import 'package:turkesh_marketer/repository/all_requests_repo.dart';
 import 'package:turkesh_marketer/repository/all_tender_repo.dart';
 import 'package:turkesh_marketer/repository/get_user_repository.dart';
+import 'package:turkesh_marketer/repository/search_repo.dart';
 import 'package:turkesh_marketer/screens/profile/my_profile.dart';
 import 'package:turkesh_marketer/screens/search/search_screen.dart';
 import 'package:turkesh_marketer/screens/splash.dart';
@@ -32,6 +35,7 @@ import 'package:turkesh_marketer/screens/splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  final search = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
   final userRepository = UserRepository(UserService());
   final cooperationRepository = CooperationRespository(CooperationService());
@@ -46,6 +50,7 @@ void main() async {
       path: 'assets/lang',
       fallbackLocale: Locale('en'),
       child: MyApp(
+        searchRepository: search,
         slectpost: slectpost,
         userRepository: userRepository,
         cooperationRespository: cooperationRepository,
@@ -58,6 +63,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final SearchRepository searchRepository;
   final PostRepository slectpost;
   final UserRepository userRepository;
   final CooperationRespository cooperationRespository;
@@ -66,6 +72,7 @@ class MyApp extends StatelessWidget {
   final CompaniesRepository companiesRepository;
   const MyApp({
     super.key,
+    required this.searchRepository,
     required this.slectpost,
     required this.cooperationRespository,
     required this.tenderRepository,
@@ -102,6 +109,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => PostBloc(slectpost)),
         BlocProvider<UserBloc>(
           create: (context) => UserBloc(userRepository),
+        ),
+        // Search
+        BlocProvider(
+          create: (context) => SearchCubit(searchRepository),
+          child: SearchScreen(), // الصفحة التي تحتوي على واجهة البحث
         ),
       ],
       child: Builder(

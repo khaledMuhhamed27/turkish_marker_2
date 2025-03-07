@@ -6,6 +6,7 @@ import 'package:turkesh_marketer/model/categories_modell.dart';
 import 'package:turkesh_marketer/screens/home/categories/show_select_categories.dart';
 import 'package:turkesh_marketer/screens/home/categories/tim_categories.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
+import 'package:turkesh_marketer/widgets/loading_widgt.dart';
 
 class ShowSubCategoryScrren extends StatelessWidget {
   final Category category;
@@ -51,7 +52,7 @@ class ShowSubCategoryScrren extends StatelessWidget {
               child: BlocBuilder<CategoryBloc, CategoryState>(
                 builder: (context, state) {
                   if (state is CategoryLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return LoadingWidgt();
                   } else if (state is SubcategoriesLoaded) {
                     print("🟢 البيانات التي ستُعرض: ${state.subcategories}");
 

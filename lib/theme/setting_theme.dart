@@ -13,6 +13,7 @@ class SettingTheme extends StatefulWidget {
 }
 
 class _SettingThemeState extends State<SettingTheme> {
+  List myTheme = ["dark_mode".tr(), "light_mode".tr()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +56,7 @@ class _SettingThemeState extends State<SettingTheme> {
                                 ? Colors.black26
                                 : Color(0xFFF9FAFB),
                         title: Text(
-                          itemAppTheme.name,
+                          myTheme[index],
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).brightness ==

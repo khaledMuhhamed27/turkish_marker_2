@@ -64,5 +64,8 @@
     "success_message": "Registration successful! Redirecting to the home page...",
     "error": "error ",
     "error_message": " An unexpected error occurred. Please try again.",
-    "choose_app": "Choose the App theme"
+    "choose_app": "Choose the App theme",
+    "change_theme": "Chanhe Theme",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Default Mode"
 }

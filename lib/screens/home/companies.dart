@@ -28,7 +28,7 @@ class CompaniesScreen2 extends StatelessWidget {
           ),
           Column(
             children: [
-              // ✅ الـ AppBar ثابت في الأعلى
+              // ✅ الـ AppBar
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
