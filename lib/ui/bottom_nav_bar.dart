@@ -36,7 +36,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   List<PersistentTabConfig> _tabs(BuildContext context, int selectedIndex) => [
         PersistentTabConfig(
-          screen: const CustomTabBarHomeScreen(),
+          screen: CustomTabBarHomeScreen(),
           item: ItemConfig(
             activeForegroundColor: (selectedIndex == 0)
                 ? (Theme.of(context).brightness == Brightness.dark
@@ -66,7 +66,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
         ),
         PersistentTabConfig(
-          screen: CustomTabBarScreen(),
+          //  CustomTabBarScreen()
+          screen: TendersTabs(),
           item: ItemConfig(
             activeForegroundColor: (selectedIndex == 1)
                 ? (Theme.of(context).brightness == Brightness.dark
@@ -96,7 +97,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
         ),
         PersistentTabConfig(
-          screen: const CustomTabBarShipScreen(),
+          screen: TabBarDearship(),
           item: ItemConfig(
             activeForegroundColor: (selectedIndex == 2)
                 ? (Theme.of(context).brightness == Brightness.dark

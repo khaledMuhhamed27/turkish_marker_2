@@ -70,10 +70,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     Navigator.pushNamed(context, 'setting');
                   },
                   myRightButton: true,
-                  titleScreen: "Categories",
+                  titleScreen: "nav_category".tr(),
                   onRightIconTap: () {
                     Navigator.pushNamed(context, 'search');
-                    
                   },
                 ),
               ),

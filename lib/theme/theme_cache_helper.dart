@@ -6,14 +6,15 @@ class ThemeCacheHelper {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt("THEME_INDEX", themeIndex);
   }
- // get initial theme
+
+  // get initial theme
   Future<int> getCachedThemeIndex() async {
     final prefs = await SharedPreferences.getInstance();
     final cachedThemeIndex = prefs.getInt("THEME_INDEX");
     if (cachedThemeIndex != null) {
       return cachedThemeIndex;
     } else {
-      return 0;
+      return 1;
     }
   }
 }

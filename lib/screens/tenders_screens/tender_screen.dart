@@ -8,14 +8,15 @@ import 'package:turkesh_marketer/widgets/loading_widgt.dart';
 import 'package:turkesh_marketer/widgets/my_card_list.dart';
 import 'package:turkesh_marketer/widgets/no_results.dart';
 
-class PartnerSc extends StatelessWidget {
-  const PartnerSc({super.key});
+class TendersSc extends StatelessWidget {
+  final String subType;
+  const TendersSc({super.key , required this.subType});
 
   @override
   Widget build(BuildContext context) {
     // إرسال الحدث لتحميل العطاءات عند فتح الشاشة
     BlocProvider.of<TenderBloc>(context)
-        .add(LoadTendersEvent(tenderSubtype: 'partner'));
+        .add(LoadTendersEvent(tenderSubtype: subType));
 
     return Scaffold(
       body: Column(
@@ -35,6 +36,7 @@ class PartnerSc extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final tender = state.tenders[index];
                       return MyCardList(
+                        id: tender.id,
                         title: tender.title,
                         credits: tender.credit,
                         createdAt: tender.createdAt.toString(),

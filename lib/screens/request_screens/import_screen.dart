@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/requests_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/requests_event.dart';
 import 'package:turkesh_marketer/bloc/bloc/requests_state.dart';
+import 'package:turkesh_marketer/screens/request_screens/show_details_request.dart';
 import 'package:turkesh_marketer/widgets/loading_widgt.dart';
 import 'package:turkesh_marketer/widgets/my_card_list.dart';
 import 'package:turkesh_marketer/widgets/no_results.dart';
@@ -42,13 +43,13 @@ class ImportSc extends StatelessWidget {
                         imageUrl: importData.photo,
                         details: importData.details,
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         ShowDetailsScreen(tender: importData),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ShowDetailsRequest(imprtModel: importData),
+                            ),
+                          );
                         },
                       );
                     },

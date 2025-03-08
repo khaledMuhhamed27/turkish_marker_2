@@ -57,13 +57,17 @@ class MyCardList extends StatelessWidget {
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(12)),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: FancyShimmerImage(
+                  borderRadius: BorderRadius.circular(12),
+                  child: FancyShimmerImage(
+                    imageUrl: imageUrl != null ? baseUrl + imageUrl! : "",
                     errorWidget: Image.network(
                       "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.broken_image,
+                            size: 50, color: Colors.grey);
+                      },
                     ),
-                    imageUrl: baseUrl + imageUrl!),
-              ),
+                  )),
             ),
             // Sized
             SizedBox(width: 10),

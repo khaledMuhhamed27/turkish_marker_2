@@ -68,5 +68,22 @@
     "choose_app": "اختر ثيم التطبيق",
     "change_theme": "تغيير الثيم",
     "dark_mode": "الوضع الليلي",
-    "light_mode": "الوضع الافتراضي"
+    "light_mode": "الوضع الافتراضي",
+    "import_tab": "الواردات",
+    "exports_tab": "صادرات",
+    "logistics_tab": "اللوجستيات",
+    "sponsored_tab": "برعاية",
+    "request_tab": "طلب السعر",
+    "supply_tab": "عرض التوريد",
+    "logistic_tab": "شركة لوجستية",
+    "partner_tab": "شريك",
+    "executing_tab": "شركة تنفيذية",
+    "investment_tab": "عرض استثماري",
+    "franc_tab": "امتياز",
+    "whole_tab": "الجملة",
+    "online_tab": "البيع عبر الانترنت",
+    "service": "مزود الخدمة",
+    "autho_tab": "وكيل معتمد",
+    "search": "البحث",
+    "searchh":"ابحث عن اي شيء"
 }

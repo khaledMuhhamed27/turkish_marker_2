@@ -30,16 +30,19 @@ class ShowItemSearch extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: FancyShimmerImage(
-                    boxFit: BoxFit.fill,
+                  width: double.infinity,
+                  height: 200,
+                  child: FancyShimmerImage(
+                    // ignore: unnecessary_null_comparison
+                    imageUrl: imageUrl != null ? baseUrl + imageUrl : "",
                     errorWidget: Image.network(
                       "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
-                      fit: BoxFit.fill,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.broken_image,
+                            size: 50, color: Colors.grey);
+                      },
                     ),
-                    imageUrl: baseUrl + imageUrl),
-              ),
+                  )),
               const SizedBox(height: 16),
               Text(
                 title, // ✅ عرض العنوان الصحيح

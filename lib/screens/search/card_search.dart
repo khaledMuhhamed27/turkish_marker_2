@@ -59,17 +59,21 @@ class MySearchCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: FancyShimmerImage(
-                    errorWidget: Image.network(
-                      "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
-                    ),
-                    imageUrl: baseUrl + imageUrl!),
+                  imageUrl: imageUrl != null ? baseUrl + imageUrl! : "",
+                  errorWidget: Image.network(
+                    "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.broken_image,
+                          size: 50, color: Colors.grey);
+                    },
+                  ),
+                ),
               ),
             ),
             // Sized
             SizedBox(width: 10),
             // TEXTS
             Expanded(
-           
               child: Column(
                 children: [
                   Row(

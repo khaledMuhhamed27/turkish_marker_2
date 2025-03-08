@@ -67,5 +67,22 @@
     "choose_app": "Choose the App theme",
     "change_theme": "Chanhe Theme",
     "dark_mode": "Dark Mode",
-    "light_mode": "Default Mode"
+    "light_mode": "Default Mode",
+    "import_tab": "Imports",
+    "exports_tab": "Exports",
+    "logistics_tab": "Logistics",
+    "sponsored_tab": "Sponsored",
+    "request_tab": "Request for price",
+    "supply_tab": "Supply offer",
+    "logistic_tab": "Logistic company",
+    "partner_tab": "Partner",
+    "executing_tab": "Executing company",
+    "investment_tab": "Investment offer",
+    "franc_tab": "Franchise",
+    "whole_tab": "Wholesale",
+    "online_tab": "Online Sale",
+    "service": "Service Provider",
+    "autho_tab": "Authorized Agent",
+    "search": "Search",
+    "searchh": "Search Here ...."
 }

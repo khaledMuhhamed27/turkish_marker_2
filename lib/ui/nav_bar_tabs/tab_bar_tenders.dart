@@ -1,61 +1,72 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/executing_company_sc.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/investment_offer_sc.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/logistic_company_sc.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/partner_sc.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/requset_for_price_sc.dart';
-import 'package:turkesh_marketer/screens/tenders_screens/supply_offer_sc.dart';
+import 'package:turkesh_marketer/screens/tenders_screens/tender_screen.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/circle_background.dart';
+import 'dart:ui' as ui;
 
-class CustomTabBarScreen extends StatefulWidget {
-  const CustomTabBarScreen({super.key});
+class TendersTabs extends StatefulWidget {
+  const TendersTabs({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CustomTabBarScreen createState() => _CustomTabBarScreen();
+  _TendersTabs createState() => _TendersTabs();
 }
 
-class _CustomTabBarScreen extends State<CustomTabBarScreen>
+class _TendersTabs extends State<TendersTabs>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late ScrollController _scrollController;
   int _selectedIndex = 0;
-  String titleNav = "Request for price";
-  final List<String> tabs = [
-    "Request for price",
-    "Supply offer",
-    "Logistic company",
-    "Partner",
-    "Executing company",
-    "Investment offer",
-  ];
+  String titleNav = "request_tab".tr();
+  List<String> tabs = [];
+  final List<GlobalKey> _tabKeys = [];
 
   final List<Widget> pages = [
-    RequsetForPriceSc(),
-    SupplyOfferSc(),
-    LogisticCompanySc(),
-    PartnerSc(),
-    ExecutingCompanySc(),
-    InvestmentOfferSc(),
+    TendersSc(subType: 'request_for_price'),
+    TendersSc(subType: 'partner'),
+    TendersSc(subType: 'logistic_company'),
+    TendersSc(subType: 'supply_offer'),
+    TendersSc(subType: 'execution_company'),
+    TendersSc(subType: 'investment_offer'),
   ];
-
-  final List<GlobalKey> _tabKeys = [];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
     _scrollController = ScrollController();
-    _tabKeys.addAll(List.generate(tabs.length, (index) => GlobalKey()));
+    _tabKeys.addAll(List.generate(6, (index) => GlobalKey()));
 
     _tabController.addListener(() {
       setState(() {
         _selectedIndex = _tabController.index;
+        titleNav = tabs[_selectedIndex]; // تحديث العنوان عند تغيير التبويب
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _scrollToCenter(_selectedIndex);
       });
+    });
+
+    _updateTabs();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateTabs();
+  }
+
+  void _updateTabs() {
+    setState(() {
+      tabs = [
+        "request_tab".tr(),
+        "partner_tab".tr(),
+        "logistic_tab".tr(),
+        "supply_tab".tr(),
+        "executing_tab".tr(),
+        "investment_tab".tr(),
+      ];
+      titleNav = tabs[_selectedIndex]; // تحديث العنوان بناءً على اللغة الجديدة
     });
   }
 
@@ -66,11 +77,11 @@ class _CustomTabBarScreen extends State<CustomTabBarScreen>
       double tabPosition = renderBox.localToGlobal(Offset.zero).dx;
       double tabWidth = renderBox.size.width;
       double screenWidth = MediaQuery.of(context).size.width;
-      bool isRTL = Directionality.of(context) == TextDirection.rtl;
+      bool isRTL = Directionality.of(context) == ui.TextDirection.rtl;
 
       double scrollOffset = _scrollController.offset +
           (isRTL
-              ? (tabPosition - (screenWidth / 2) + (tabWidth / 2)) * -1
+              ? (tabPosition - (screenWidth / 2) + (tabWidth / 2)) * 1
               : (tabPosition - (screenWidth / 2) + (tabWidth / 2)));
 
       _scrollController.animateTo(
@@ -86,8 +97,10 @@ class _CustomTabBarScreen extends State<CustomTabBarScreen>
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final Color circleColor =
         isDarkMode ? Colors.black26 : Colors.blueGrey.shade50;
+    bool isRTL = context.locale.languageCode == 'ar';
+
     return Directionality(
-      textDirection: TextDirection.ltr, // جرب تغييره إلى rtl عند الحاجة
+      textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -113,20 +126,21 @@ class _CustomTabBarScreen extends State<CustomTabBarScreen>
                     },
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
+                  width: double.infinity,
                   height: 52,
                   decoration: BoxDecoration(
-                      color: Color(0xFFF9FAFB),
-                      border: Border.all(
-                        width: 1,
-                        color: Color(0xFFEAECF0),
-                      )),
+                    color: const Color(0xFFF9FAFB),
+                    border: Border.all(
+                      width: 1,
+                      color: const Color(0xFFEAECF0),
+                    ),
+                  ),
                   child: SingleChildScrollView(
                     controller: _scrollController,
                     scrollDirection: Axis.horizontal,
-                    reverse: Directionality.of(context) ==
-                        TextDirection.rtl, // عكس الاتجاه عند RTL
+                    reverse: isRTL,
                     child: Row(
                       children: List.generate(tabs.length, (index) {
                         bool isSelected = _selectedIndex == index;
@@ -151,17 +165,17 @@ class _CustomTabBarScreen extends State<CustomTabBarScreen>
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: isSelected
                                   ? [
-                                      BoxShadow(
+                                      const BoxShadow(
                                         color: Color(0xff1018280f),
                                         blurRadius: 2,
                                         spreadRadius: 1,
-                                        offset: const Offset(0, 3),
+                                        offset: Offset(0, 3),
                                       ),
-                                      BoxShadow(
+                                      const BoxShadow(
                                         color: Color(0xff1018281a),
                                         blurRadius: 3,
                                         spreadRadius: 1,
-                                        offset: const Offset(0, 3),
+                                        offset: Offset(0, 3),
                                       ),
                                     ]
                                   : [],
@@ -172,8 +186,8 @@ class _CustomTabBarScreen extends State<CustomTabBarScreen>
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: isSelected
-                                    ? Color(0xFF344054)
-                                    : Color(0xFF667085),
+                                    ? const Color(0xFF344054)
+                                    : const Color(0xFF667085),
                               ),
                             ),
                           ),

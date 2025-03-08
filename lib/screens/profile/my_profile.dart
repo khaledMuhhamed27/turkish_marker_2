@@ -51,7 +51,7 @@ class _MyProfileState extends State<MyProfile> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    // Change Language
+                    // Edit profile
                     MyListTileF(
                       iconUrl: "assets/images/edt.svg",
                       onTap: () {
@@ -63,7 +63,7 @@ class _MyProfileState extends State<MyProfile> {
                         );
                       },
                       titleC: 'edit_profile'.tr(),
-                    ), // Change Language
+                    ), // Add company
                     MyListTileF(
                       iconUrl: "assets/images/q.svg",
                       onTap: () {
@@ -76,7 +76,7 @@ class _MyProfileState extends State<MyProfile> {
                         print("Form Company");
                       },
                       titleC: 'add_company'.tr(),
-                    ), // Change Language
+                    ), // Change Password
                     MyListTileF(
                       iconUrl: "assets/images/qa.svg",
                       onTap: () {
@@ -94,6 +94,7 @@ class _MyProfileState extends State<MyProfile> {
                       },
                       titleC: "change_lang".tr(),
                     ),
+                    // Change Theme
                     MyListTiletheme(),
                   ],
                 ),
@@ -113,93 +114,43 @@ class _MyProfileState extends State<MyProfile> {
               // Contact us
               MyListTileF(
                 iconUrl: "assets/images/sas.svg",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 titleC: 'contact'.tr(),
               ),
               //Our partners
               MyListTileF(
                 iconUrl: "assets/images/rf.svg",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 titleC: 'our_partners'.tr(),
               ),
               //Terms and Condation
               MyListTileF(
                 iconUrl: "assets/images/gt.svg",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 titleC: 'terms_cond'.tr(),
               ),
               // Index of products
               MyListTileF(
                 iconUrl: "assets/images/yh.svg",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 titleC: 'index_prod'.tr(),
               ),
               // sized
               SizedBox(height: 30),
               // Other
               MyListTileF(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 titleC: 'other'.tr(),
               ),
               // Membership Plans
               MyListTileF(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                },
+                onTap: () {},
                 iconUrl: 'assets/images/tag.svg',
                 titleC: 'membership_plans'.tr(),
               ),
               // Agents
               MyListTileF(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(),
-                    ),
-                  );
-                  print("Form Edit");
-                },
+                onTap: () {},
                 iconUrl: 'assets/images/gtr.svg',
                 titleC: 'agents'.tr(),
               ),

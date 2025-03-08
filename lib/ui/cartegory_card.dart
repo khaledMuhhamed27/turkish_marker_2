@@ -36,13 +36,17 @@ class CartegoryCard extends StatelessWidget {
               ? Colors.black54
               : Color(0xFFFEE4E2),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: FancyShimmerImage(
+              borderRadius: BorderRadius.circular(50),
+              child: FancyShimmerImage(
+                imageUrl: imageUrl != null ? baseUrl + imageUrl! : "",
                 errorWidget: Image.network(
                   "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.broken_image,
+                        size: 50, color: Colors.grey);
+                  },
                 ),
-                imageUrl: baseUrl + imageUrl!),
-          ),
+              )),
         ),
         tileColor: Theme.of(context).brightness == Brightness.dark
             ? Colors.black54

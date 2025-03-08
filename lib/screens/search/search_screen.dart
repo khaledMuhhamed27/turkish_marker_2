@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/cubit/search/cubit/search_cubit.dart';
@@ -34,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                   onLeftIconTap: () {
                     Navigator.pop(context);
                   },
-                  titleScreen: "Search",
+                  titleScreen: "search".tr(),
                 ),
                 SizedBox(height: 50),
                 // TextField لإدخال النص

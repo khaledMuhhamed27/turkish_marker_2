@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -42,16 +43,10 @@ class _InputSearchState extends State<InputSearch> {
                 cursorColor: Color(0xFFD92D20),
                 controller: controller,
                 onChanged: widget.onChanged,
-                // onChanged: (value) {
-                //   setState(() {
-                //     showClearIcon = value.isNotEmpty;
-                //   });
-                //   widget.onChanged!(value);
-                // },
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   focusColor: Colors.white,
-                  hintText: "Search Here ....",
+                  hintText: "searchh".tr(),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(color: Color(0xFFD92D20))),
