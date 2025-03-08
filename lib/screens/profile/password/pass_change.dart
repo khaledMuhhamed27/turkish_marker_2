@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turkesh_marketer/constants/helpers.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
-import 'package:turkesh_marketer/widgets/my_button_form.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
 
 class PassChangeScreen extends StatefulWidget {
