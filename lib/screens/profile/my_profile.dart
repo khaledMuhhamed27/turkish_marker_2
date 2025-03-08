@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turkesh_marketer/screens/auth/login.dart';
-import 'package:turkesh_marketer/screens/profile/pass_change.dart';
+import 'package:turkesh_marketer/screens/profile/password/pass_change.dart';
 import 'package:turkesh_marketer/screens/profile/select_lang_screen.dart';
 import 'package:turkesh_marketer/screens/profile/add_company.dart';
 import 'package:turkesh_marketer/screens/profile/user_info.dart';
@@ -222,7 +222,7 @@ class _MyProfileState extends State<MyProfile> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("هل أنت متأكد من تسجيل الخروج؟"),
+            title: Text("log_con".tr()),
             actions: [
               // زر نعم
               TextButton(
@@ -243,7 +243,13 @@ class _MyProfileState extends State<MyProfile> {
                     MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 },
-                child: Text("نعم"),
+                child: Text(
+                  "log_yes".tr(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                ),
               ),
               // زر إلغاء
               TextButton(
@@ -254,7 +260,13 @@ class _MyProfileState extends State<MyProfile> {
                     print("خطأ أثناء تسجيل الخروج: $e");
                   }
                 },
-                child: Text("إلغاء"),
+                child: Text(
+                  "log_cancel".tr(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueGrey.shade900,
+                  ),
+                ),
               ),
             ],
           );

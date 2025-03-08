@@ -10,7 +10,9 @@ class NameTileInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.centerLeft,
+      alignment: context.locale.languageCode == 'ar'
+          ? Alignment.centerRight
+          : Alignment.centerLeft,
       padding: EdgeInsets.symmetric(vertical: 8),
       child: Text(
         InputTile,

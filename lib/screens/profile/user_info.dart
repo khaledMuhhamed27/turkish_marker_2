@@ -10,6 +10,7 @@ import 'package:turkesh_marketer/model/phone_number_class.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
+import 'dart:ui' as ui;
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -209,120 +210,143 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    CustomAppBar(
-                      myLiftIcon: Icons.arrow_back,
-                      myRightButton: false,
-                      titleScreen: "Edit Profile",
-                      onLeftIconTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    NameTileInput(InputTile: "Name*"),
-                    MyInput(
-                      yourController: _nameController,
-                      yourHintText: "Edit Your Name",
-                      yourValidator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "this input is required";
-                        }
-                        return null;
-                      },
-                    ),
-                    // Email
-                    SizedBox(height: 12),
-                    NameTileInput(InputTile: "Email*"),
-                    MyInput(
-                      yourController: _emailController,
-                      yourHintText: "Edit Your Email",
-                      yourValidator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "this input is required";
-                        }
-                        return null;
-                      },
-                    ),
-                    // Select Countr
-                    SizedBox(height: 20),
-                    NameTileInput(InputTile: "select_cry".tr()),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "requird_ino".tr();
-                        }
-                        return null;
-                      },
-                      controller: _countryController,
-                      readOnly: true,
-                      onTap: _selectCountry,
-                      decoration: InputDecoration(
-                        hintText: 'select_cry_yoour'.tr(),
-                        suffixIcon: Icon(Icons.arrow_drop_down),
-                        // Erorr
-                        errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.red,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(12)),
-                        // focused error border
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(12)),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(12),
+    return Directionality(
+      textDirection: context.locale.languageCode == 'ar'
+          ? ui.TextDirection.rtl
+          : ui.TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: Color(0xFFFFFFFF),
+        body: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomAppBar(
+                          myLiftIcon: Icons.arrow_back,
+                          myRightButton: false,
+                          titleScreen: "edit_prof".tr(),
+                          onLeftIconTap: () {
+                            Navigator.pop(context);
+                          },
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 2),
-                          borderRadius: BorderRadius.circular(12),
+                        SizedBox(height: 20),
+                        NameTileInput(InputTile: "name".tr()),
+                        MyInput(
+                          yourController: _nameController,
+                          yourHintText: "chng_name".tr(),
+                          yourValidator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "requird_ino".tr();
+                            }
+                            return null;
+                          },
                         ),
-                      ),
+                        // Email
+                        SizedBox(height: 12),
+                        NameTileInput(InputTile: "emailF".tr()),
+                        MyInput(
+                          yourController: _emailController,
+                          yourHintText: "chng_email".tr(),
+                          yourValidator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "requird_ino".tr();
+                            }
+                            return null;
+                          },
+                        ),
+                        // Select Countr
+                        SizedBox(height: 20),
+                        NameTileInput(InputTile: "select_cry".tr()),
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "requird_ino".tr();
+                            }
+                            return null;
+                          },
+                          controller: _countryController,
+                          readOnly: true,
+                          onTap: _selectCountry,
+                          decoration: InputDecoration(
+                            hintText: 'select_cry_yoour'.tr(),
+                            suffixIcon: Icon(Icons.arrow_drop_down),
+                            // Erorr
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(12)),
+                            // focused error border
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(12)),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                        // Phone Number
+                        SizedBox(height: 12),
+                        NameTileInput(InputTile: "phone".tr()),
+                        PhoneNumberInput(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "requird_ino".tr();
+                            }
+                            return null;
+                          },
+                          controller: _phoneNumController,
+                          countryCode: _selectedPhoneCode ??
+                              "+970", // تعيين قيمة افتراضية
+                          phoneCode: _selectedPhoneCode ?? "+970",
+                        ),
+                        SizedBox(height: 70),
+                        MaterialButton(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          padding: EdgeInsets.symmetric(vertical: 14),
+                          color: Color(0xff475467),
+                          minWidth: MediaQuery.of(context).size.width * 9,
+                          onPressed: () async {
+                            if (_selectedCountryId == null) {
+                              _showErrorDialog(
+                                  "يرجى اختيار الدولة قبل الحفظ", false);
+                              return;
+                            } else {
+                              _updateProfile();
+                            }
+                          },
+                          child: Text(
+                            "save_chnag".tr(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    // Phone Number
-                    SizedBox(height: 12),
-                    NameTileInput(InputTile: "Phone Number*"),
-                    PhoneNumberInput(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "requird_ino".tr();
-                        }
-                        return null;
-                      },
-                      controller: _phoneNumController,
-                      countryCode:
-                          _selectedPhoneCode ?? "+970", // تعيين قيمة افتراضية
-                      phoneCode: _selectedPhoneCode ?? "+970",
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (_selectedCountryId == null) {
-                          _showErrorDialog(
-                              "يرجى اختيار الدولة قبل الحفظ", false);
-                          return;
-                        } else {
-                          _updateProfile();
-                        }
-                      },
-                      child: Text("حفظ التعديلات"),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 }

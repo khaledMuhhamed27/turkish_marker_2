@@ -29,55 +29,85 @@ class SelectLangScreen extends StatelessWidget {
 
                   return Column(
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          context.setLocale(Locale('ar'));
-                          BlocProvider.of<LocalCubit>(context)
-                              .changeLanguage('ar');
-                        },
-                        icon: const Icon(Icons.language),
-                        label: const Text("تطبيق - العربية"),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 20),
-                          textStyle: const TextStyle(fontSize: 18),
-                          backgroundColor: currentLang == 'ar'
-                              ? Colors.teal
-                              : Colors.grey.shade300,
-                          foregroundColor:
-                              currentLang == 'ar' ? Colors.white : Colors.black,
+                      Container(
+                        decoration: BoxDecoration(),
+                        child: ListTile(
+                          tileColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.black26
+                                  : Color(0xFFF9FAFB),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Color(0xFF98A2B3)
+                                    : Color(0xFFF9FAFB),
+                                width: 0.2),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 0, horizontal: 16),
+                          title: Text(
+                            "ara".tr(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.black
+                                    : Color(0xFF182230)),
+                          ),
+                          trailing: currentLang == 'ar'
+                              ? Icon(Icons.radio_button_checked,
+                                  color: Colors.blueGrey.shade700, size: 24)
+                              : null,
+                          onTap: () {
+                            context.setLocale(const Locale('ar'));
+                            BlocProvider.of<LocalCubit>(context)
+                                .changeLanguage('ar');
+                          },
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          context.setLocale(Locale('en'));
-
+                      SizedBox(height: 30),
+                      ListTile(
+                        tileColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.black26
+                                : Color(0xFFF9FAFB),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Color(0xFF98A2B3)
+                                  : Color(0xFFF9FAFB),
+                              width: 0.2),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 16),
+                        title: Text(
+                          "eng".tr(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.black
+                                  : Color(0xFF182230)),
+                        ),
+                        trailing: currentLang == 'en'
+                            ? Icon(Icons.radio_button_checked,
+                                color: Colors.blueGrey.shade700, size: 24)
+                            : null,
+                        onTap: () {
+                          context.setLocale(const Locale('en'));
                           BlocProvider.of<LocalCubit>(context)
                               .changeLanguage('en');
                         },
-                        icon: const Icon(Icons.language),
-                        label: const Text("Apply - English"),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 20),
-                          textStyle: const TextStyle(fontSize: 18),
-                          backgroundColor: currentLang == 'en'
-                              ? Colors.teal
-                              : Colors.grey.shade300,
-                          foregroundColor:
-                              currentLang == 'en' ? Colors.white : Colors.black,
-                        ),
                       ),
                     ],
                   );
                 },
               ),
               const SizedBox(height: 30),
-              Text(
-                "welcom".tr(),
-                style: TextStyle(fontSize: 24),
-              ),
             ],
           ),
         ),

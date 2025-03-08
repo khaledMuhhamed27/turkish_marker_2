@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -5,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turkesh_marketer/constants/helpers.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
+import 'package:turkesh_marketer/widgets/my_button_form.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
 
 class PassChangeScreen extends StatefulWidget {
@@ -109,36 +111,51 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
                     CustomAppBar(
                       myLiftIcon: Icons.arrow_back,
                       myRightButton: false,
-                      titleScreen: "Change Password",
+                      titleScreen: "chang_pass".tr(),
                       onLeftIconTap: () => Navigator.pop(context),
                     ),
-                    NameTileInput(InputTile: "كلمة المرور الحالية*"),
+                    SizedBox(height: 20),
+                    NameTileInput(InputTile: "now_pass".tr()),
                     MyInput(
                       yourController: _passwordController,
-                      yourHintText: "أدخل كلمة المرور الحالية",
+                      isPassword: false,
+                      yourHintText: "now_pass".tr(),
                       yourValidator: (value) =>
-                          value!.isEmpty ? "هذا الحقل مطلوب" : null,
+                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
                     SizedBox(height: 12),
-                    NameTileInput(InputTile: "كلمة المرور الجديدة*"),
+                    NameTileInput(InputTile: "new_pass".tr()),
                     MyInput(
                       yourController: _newPasswordController,
-                      yourHintText: "أدخل كلمة المرور الجديدة",
+                      yourHintText: "new_pass".tr(),
                       yourValidator: (value) =>
-                          value!.isEmpty ? "هذا الحقل مطلوب" : null,
+                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
                     SizedBox(height: 12),
-                    NameTileInput(InputTile: "تأكيد كلمة المرور الجديدة*"),
+                    NameTileInput(InputTile: "con_new_pass".tr()),
                     MyInput(
                       yourController: _confirmPasswordController,
-                      yourHintText: "أعد إدخال كلمة المرور الجديدة",
+                      yourHintText: "con_new_pass".tr(),
                       yourValidator: (value) =>
-                          value!.isEmpty ? "هذا الحقل مطلوب" : null,
+                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
+                    SizedBox(height: 100),
+                    MaterialButton(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      padding: EdgeInsets.symmetric(vertical: 14),
+                      color: Color(0xff475467),
+                      minWidth: MediaQuery.of(context).size.width * 9,
                       onPressed: _updatePassword,
-                      child: Text("حفظ التعديلات"),
+                      child: Text(
+                        "save_chnag".tr(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ],
                 ),

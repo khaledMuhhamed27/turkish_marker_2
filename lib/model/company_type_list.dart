@@ -1,12 +1,13 @@
 // company type
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 final List<String> companyType = [
-  "Exporter Company",
-  "Importer Company",
-  "Logistic Company",
-  "Manufactory Company",
-  "Wholesaler Company"
+  "ex_cpm".tr(),
+  "im_cpm".tr(),
+  "lo_com".tr(),
+  "mf_com".tr(),
+  "wh_com".tr()
 ];
 
 class MyDropDownList extends StatefulWidget {
@@ -23,7 +24,7 @@ class _MyDropDownListState extends State<MyDropDownList> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
-        hintText: "Select Company",
+        hintText: "sle".tr(),
         // Enable
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(

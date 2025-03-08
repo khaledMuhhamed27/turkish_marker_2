@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:country_picker/country_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turkesh_marketer/model/company_type_list.dart';
 import 'package:turkesh_marketer/model/phone_number_class.dart';
+import 'package:turkesh_marketer/ui/nav_bar_tabs/tab_bar_homs.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
 import 'package:turkesh_marketer/widgets/my_button_form.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
@@ -118,7 +120,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 // Add Company Text
                 Center(
                   child: Text(
-                    "Add Company",
+                    "add_company".tr(),
                     style: TextStyle(
                       color: Color(0xFF101828),
                       fontSize: 24,
@@ -131,7 +133,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 // .
                 Center(
                   child: Text(
-                    "Share where you’ve worked on your profile",
+                    "some".tr(),
                     style: TextStyle(
                       color: Color(0xFF475467),
                       fontSize: 16,
@@ -140,41 +142,41 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 ),
                 // Sized
                 SizedBox(height: 30),
-                NameTileInput(InputTile: "Company Name*"),
+                NameTileInput(InputTile: "com_name".tr()),
                 MyInput(
                   yourController: _companyNameController,
-                  yourHintText: "Edit Your Name",
+                  yourHintText: "com_name".tr(),
                   yourValidator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this input is required";
+                      return "requird_ino".tr();
                     }
                     return null;
                   },
                 ),
                 SizedBox(height: 20),
                 // Company Type TEXT
-                NameTileInput(InputTile: "Company Type*"),
+                NameTileInput(InputTile: "com_type".tr()),
                 // Company Type DropDown
                 MyDropDownList(),
                 //
                 SizedBox(height: 20),
                 // Description TEXT
-                NameTileInput(InputTile: "Description*"),
+                NameTileInput(InputTile: "com_desc".tr()),
                 // Description Input
                 MyInput(
                   yourController: _adescriptionController,
-                  yourHintText: "Enter a description...",
+                  yourHintText: "com_desc_p".tr(),
                   minLine: 4,
                 ),
                 // Country
                 SizedBox(height: 20),
-                NameTileInput(InputTile: "Select Counter*"),
+                NameTileInput(InputTile: "select_cry".tr()),
                 // Select Country
                 _selectCountryMth(context),
                 // Sized
                 SizedBox(height: 20),
                 // Website TEXT
-                NameTileInput(InputTile: "Website*"),
+                NameTileInput(InputTile: "website".tr()),
                 // Url Input Method
                 MyButtonForm(
                   yourkeybordType: TextInputType.url,
@@ -182,12 +184,12 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 ),
                 // Phone Number
                 SizedBox(height: 20),
-                NameTileInput(InputTile: "Phone Number*"),
+                NameTileInput(InputTile: "phone".tr()),
                 // Input
                 PhoneNumberInput(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this input is required";
+                      return "requird_ino".tr();
                     }
                     return null;
                   },
@@ -198,14 +200,14 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 // Email
                 SizedBox(height: 20),
                 // Text
-                NameTileInput(InputTile: "Email*"),
+                NameTileInput(InputTile: "emailF".tr()),
                 // \email Input
                 MyInput(
                   yourController: _emailController,
-                  yourHintText: "Email Here",
+                  yourHintText: "emailF".tr(),
                   yourValidator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this input is required";
+                      return "requird_ino".tr();
                     }
                     return null;
                   },
@@ -213,14 +215,14 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 // Billing Address
                 SizedBox(height: 20),
                 // Text
-                NameTileInput(InputTile: "Billing address*"),
+                NameTileInput(InputTile: "com_add".tr()),
                 // Billing Address Input
                 MyInput(
                   yourController: _addressController,
-                  yourHintText: "What is your title?",
+                  yourHintText: "com_til".tr(),
                   yourValidator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this input is required";
+                      return "requird_ino".tr();
                     }
                     return null;
                   },
@@ -233,7 +235,17 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
                 // ),
                 SizedBox(height: 30),
                 TwoButton(
-                  onPressed: () {},
+                  onPressed1: () {
+                    print("1");
+                  },
+                  onPressed2: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CustomTabBarHomeScreen(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 100),
               ],
@@ -250,7 +262,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
     return TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "this input is required";
+          return "requird_ino".tr();
         }
         return null;
       },
@@ -258,7 +270,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
       readOnly: true,
       onTap: _selectCountry,
       decoration: InputDecoration(
-        hintText: 'Select your country',
+        hintText: 'select_cry'.tr(),
         suffixIcon: Icon(Icons.arrow_drop_down),
         // Erorr
         errorBorder: OutlineInputBorder(
