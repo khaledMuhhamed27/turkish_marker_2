@@ -98,7 +98,6 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : Padding(
@@ -144,7 +143,9 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                       padding: EdgeInsets.symmetric(vertical: 14),
-                      color: Color(0xff475467),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black54
+                          : Color(0xff475467),
                       minWidth: MediaQuery.of(context).size.width * 9,
                       onPressed: _updatePassword,
                       child: Text(

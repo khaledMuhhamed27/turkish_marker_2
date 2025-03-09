@@ -100,7 +100,6 @@ class _TabBarDearship extends State<TabBarDearship>
     return Directionality(
       textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Stack(
           children: [
             CustomPaint(
@@ -129,10 +128,14 @@ class _TabBarDearship extends State<TabBarDearship>
                   width: double.infinity,
                   height: 52,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF9FAFB),
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.black26
+                        : Color(0xFFF9FAFB),
                     border: Border.all(
                       width: 1,
-                      color: const Color(0xFFEAECF0),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black87
+                          : Color(0xFFEAECF0),
                     ),
                   ),
                   child: SingleChildScrollView(
@@ -158,8 +161,15 @@ class _TabBarDearship extends State<TabBarDearship>
                             margin: const EdgeInsets.symmetric(horizontal: 5),
                             decoration: BoxDecoration(
                               color: isSelected
-                                  ? Colors.white
-                                  : Colors.transparent,
+                                  ? (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.black
+                                      // لون في Light Mode
+                                      : Color(0xFFFFFFFF)) // لون في Dark Mode
+                                  : (Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Color(0xFFFFFFFF) // لون في Light Mode
+                                      : Colors.transparent),
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: isSelected
                                   ? [

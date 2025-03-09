@@ -18,6 +18,7 @@ import 'package:turkesh_marketer/bloc/companies_bloc.dart';
 import 'package:turkesh_marketer/bloc/companies_event.dart';
 import 'package:turkesh_marketer/bloc/theme_bloc.dart';
 import 'package:turkesh_marketer/bloc/user_data_bloc/bloc/user_data_bloc.dart';
+import 'package:turkesh_marketer/constants/created_at_intl.dart';
 import 'package:turkesh_marketer/cubit/local_cubit.dart';
 import 'package:turkesh_marketer/cubit/search/cubit/search_cubit.dart';
 import 'package:turkesh_marketer/repository/all_categories_repo.dart';
@@ -31,8 +32,10 @@ import 'package:turkesh_marketer/repository/search_repo.dart';
 import 'package:turkesh_marketer/screens/profile/my_profile.dart';
 import 'package:turkesh_marketer/screens/search/search_screen.dart';
 import 'package:turkesh_marketer/screens/splash.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 void main() async {
+  timeago.setLocaleMessages('short1', ShortTimeMessages());
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   final search = SearchRepository(SearchService());

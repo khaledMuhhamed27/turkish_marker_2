@@ -161,7 +161,9 @@ class _MyProfileState extends State<MyProfile> {
                   elevation: 0,
                   height: 44,
                   minWidth: double.infinity,
-                  color: Color(0xffFEF3F2),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black54
+                      : Color(0xffFEF3F2),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: _logout,

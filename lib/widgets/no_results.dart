@@ -15,10 +15,14 @@ class NoResultsWidget extends StatelessWidget {
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black
+                    : Colors.white,
                 border: Border.all(
                   width: 1,
-                  color: Color(0xFFEAECF0),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Color(0xFF475467)
+                      : Color(0xFFEAECF0),
                 )),
             child: SvgPicture.asset("assets/images/srch.svg"),
           ),

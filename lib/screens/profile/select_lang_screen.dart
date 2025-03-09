@@ -9,10 +9,8 @@ class SelectLangScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
-        title: Text("myappbar".tr()),
+        title: Text("change_lang".tr()),
       ),
       body: Center(
         child: Padding(
@@ -58,7 +56,7 @@ class SelectLangScreen extends StatelessWidget {
                           ),
                           trailing: currentLang == 'ar'
                               ? Icon(Icons.radio_button_checked,
-                                  color: Colors.blueGrey.shade700, size: 24)
+                                  color: Colors.black, size: 24)
                               : null,
                           onTap: () {
                             context.setLocale(const Locale('ar'));
@@ -95,7 +93,7 @@ class SelectLangScreen extends StatelessWidget {
                         ),
                         trailing: currentLang == 'en'
                             ? Icon(Icons.radio_button_checked,
-                                color: Colors.blueGrey.shade700, size: 24)
+                                color: Colors.black, size: 24)
                             : null,
                         onTap: () {
                           context.setLocale(const Locale('en'));

@@ -215,7 +215,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ? ui.TextDirection.rtl
           : ui.TextDirection.ltr,
       child: Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
         body: isLoading
             ? Center(child: CircularProgressIndicator())
             : Padding(
@@ -321,7 +320,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
                           padding: EdgeInsets.symmetric(vertical: 14),
-                          color: Color(0xff475467),
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.black54
+                              : Color(0xff475467),
                           minWidth: MediaQuery.of(context).size.width * 9,
                           onPressed: () async {
                             if (_selectedCountryId == null) {

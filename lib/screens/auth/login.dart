@@ -190,7 +190,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -405,13 +404,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.symmetric(vertical: 12),
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.grey.shade300),
+                  side: BorderSide(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : Colors.grey.shade300),
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
                 minWidth: double.infinity,
-                color: Color(0xff475467),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black54
+                    : Color(0xff475467),
                 onPressed: () {
                   _validateForm();
                 },

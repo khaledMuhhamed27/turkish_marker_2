@@ -9,15 +9,14 @@ import 'package:turkesh_marketer/widgets/my_card_list.dart';
 import 'package:turkesh_marketer/widgets/no_results.dart';
 
 class ImportSc extends StatelessWidget {
-  final String type; // النوع الذي سيتم تمريره
-
+  final String type;
   const ImportSc({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
-    // إرسال الحدث لتحميل البيانات عند فتح الشاشة
-    BlocProvider.of<ImportBloc>(context).add(FetchImportsByType(type));
+    // إرسال الحدث لتحميل العطاءات عند فتح الشاشة
 
+    BlocProvider.of<ImportBloc>(context).add(FetchImportsByType(type));
     return Scaffold(
       body: Column(
         children: [
@@ -27,27 +26,28 @@ class ImportSc extends StatelessWidget {
                 return LoadingWidgt();
               } else if (state is ImportLoaded) {
                 if (state.imports.isEmpty) {
-                  return const Center(child: NoResultsWidget());
+                  return Center(child: NoResultsWidget());
                 }
                 return Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 100),
+                    padding: EdgeInsets.only(bottom: 100),
                     itemCount: state.imports.length,
                     itemBuilder: (context, index) {
-                      final importData = state.imports[index];
+                      final tender = state.imports[index];
                       return MyCardList(
-                        id: importData.id,
-                        title: importData.title,
-                        credits: importData.credit,
-                        createdAt: importData.createdAt.toString(),
-                        imageUrl: importData.photo,
-                        details: importData.details,
+                        id: tender.id,
+                        title: tender.title,
+                        credits: tender.credit,
+                        createdAt: tender.createdAt.toString(),
+                        imageUrl: tender.photo,
+                        details: tender.details,
+                        // OnTap
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ShowDetailsRequest(imprtModel: importData),
+                                  ShowDetailsRequest(imprtModel: tender),
                             ),
                           );
                         },
@@ -58,7 +58,7 @@ class ImportSc extends StatelessWidget {
               } else if (state is ImportError) {
                 return Center(child: Text('خطأ: ${state.message}'));
               }
-              return const NoResultsWidget();
+              return Center(child: Text('لا توجد بيانات'));
             },
           ),
         ],

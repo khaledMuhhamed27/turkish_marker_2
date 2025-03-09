@@ -5,9 +5,14 @@ class LoadingWidgt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(
-        color: Colors.red,
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 12),
+        child: CircularProgressIndicator(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.black
+              : Colors.red,
+        ),
       ),
     );
   }

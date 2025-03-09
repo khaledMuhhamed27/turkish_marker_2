@@ -81,7 +81,9 @@ class _MyButtonRState extends State<MyButtonR> {
       elevation: 0,
       padding: EdgeInsets.symmetric(vertical: 12),
       minWidth: double.infinity,
-      color: Color(0xff475467),
+      color: Theme.of(context).brightness == Brightness.dark
+          ? Colors.black54
+          : Color(0xff475467),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onPressed: widget.myOnPressed,
       child: Text(

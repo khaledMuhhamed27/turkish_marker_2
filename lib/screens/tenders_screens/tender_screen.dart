@@ -10,7 +10,7 @@ import 'package:turkesh_marketer/widgets/no_results.dart';
 
 class TendersSc extends StatelessWidget {
   final String subType;
-  const TendersSc({super.key , required this.subType});
+  const TendersSc({super.key, required this.subType});
 
   @override
   Widget build(BuildContext context) {

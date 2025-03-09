@@ -287,9 +287,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFFFFF),
         leading: Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: IconButton(

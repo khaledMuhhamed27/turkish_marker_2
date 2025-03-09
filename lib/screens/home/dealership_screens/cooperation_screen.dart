@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/cooperation_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/cooperation_event.dart';
+import 'package:turkesh_marketer/screens/home/dealership_screens/show_details_coope.dart';
 import 'package:turkesh_marketer/widgets/loading_widgt.dart';
 import 'package:turkesh_marketer/widgets/my_card_list.dart';
 import 'package:turkesh_marketer/widgets/no_results.dart';
@@ -39,13 +40,13 @@ class CooperationScreen extends StatelessWidget {
                         imageUrl: importData.photo,
                         details: importData.details,
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         ShowDetailsScreen(tender: importData),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ShowDetailsCoope(
+                                  cooperationsModel: importData),
+                            ),
+                          );
                         },
                       );
                     },

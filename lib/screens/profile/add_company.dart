@@ -85,9 +85,7 @@ class _AddCompanyScreenState extends State<AddCompanyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFFFFF),
         // Leading
         leading: IconButton(
           onPressed: () {

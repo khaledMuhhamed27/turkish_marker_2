@@ -86,6 +86,7 @@ class _MyProfCardState extends State<MyProfCard> {
                                   : "",
                               errorWidget: Image.network(
                                 "${baseUrl}imgs/adminrequest_photo/BjzEOvaa4NZgZJcjTJYmc1ehXHAyygDqXYQdEOBi.jpg",
+                                fit: BoxFit.fill,
                                 errorBuilder: (context, error, stackTrace) {
                                   return const Icon(Icons.broken_image,
                                       size: 50, color: Colors.grey);

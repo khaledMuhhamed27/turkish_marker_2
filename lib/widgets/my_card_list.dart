@@ -35,10 +35,14 @@ class MyCardList extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.black
+              : Color(0xFFFFFFFF),
           // border
           border: Border.all(
-            color: Color(0xFFEAECF0),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.blueGrey.shade800
+                : Color(0xFFEAECF0),
             width: 1,
           ),
           // border Raduis
@@ -82,21 +86,36 @@ class MyCardList extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         height: 25,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFEF3F2),
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Color(0xFF333333)
+                              : Color(0xFFFEF3F2),
                           border: Border.all(
-                            color: Color(0xFFFECDCA),
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.teal
+                                    : Color(0xFFFECDCA),
                           ),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
                           children: [
-                            SvgPicture.asset("assets/images/arwob.svg"),
+                            SvgPicture.asset(
+                              "assets/images/arwob.svg",
+                              // ignore: deprecated_member_use
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.teal
+                                  : Color(0xFFB42318),
+                            ),
                             SizedBox(width: 8),
                             Text(
                               importText.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFFB42318),
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.teal
+                                    : Color(0xFFB42318),
                               ),
                             ),
                           ],
@@ -104,30 +123,6 @@ class MyCardList extends StatelessWidget {
                       ),
                       SizedBox(width: 10),
                       // 2 Container
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
-                          border: Border.all(
-                            color: Color(0xFFD0D5DD),
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset("assets/images/arwob.svg"),
-                            SizedBox(width: 8),
-                            Text(
-                              "Egypt",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF344054),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                   Column(
