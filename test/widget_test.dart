@@ -1,12 +1,6 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:turkesh_marketer/api/categories_service.dart';
 import 'package:turkesh_marketer/api/cooperation_service.dart';
 import 'package:turkesh_marketer/api/get_user_data_service.dart';
 import 'package:turkesh_marketer/api/request_service.dart';
@@ -14,6 +8,7 @@ import 'package:turkesh_marketer/api/search_service.dart';
 import 'package:turkesh_marketer/api/show_select_categ_service.dart';
 import 'package:turkesh_marketer/api/tender_service.dart';
 import 'package:turkesh_marketer/main.dart';
+import 'package:turkesh_marketer/repository/all_categories_repo.dart';
 
 import 'package:turkesh_marketer/repository/all_companies_repo.dart';
 import 'package:turkesh_marketer/repository/all_cooperations_repo.dart';
@@ -24,6 +19,8 @@ import 'package:turkesh_marketer/repository/get_user_repository.dart';
 import 'package:turkesh_marketer/repository/search_repo.dart';
 
 void main() {
+  final categories = CategoryRepository(apiService: CategoryApiService());
+
   final userRepository = UserRepository(UserService());
   final searchRepository = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
@@ -35,6 +32,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(
       MyApp(
+        categoryRepository: categories,
         userRepository: userRepository,
         searchRepository: searchRepository,
         slectpost: slectpost,

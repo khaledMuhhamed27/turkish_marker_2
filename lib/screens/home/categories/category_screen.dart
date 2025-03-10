@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:translator/translator.dart';
+import 'package:turkesh_marketer/bloc/bloc/subcategories/bloc/subcategories_bloc.dart';
+import 'package:turkesh_marketer/bloc/bloc/subcategories/bloc/subcategories_event.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_event.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_state.dart';
@@ -96,7 +98,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             subtitle: category.description,
                             imageUrl: category.icon,
                             onTap: () {
-                              BlocProvider.of<CategoryBloc>(context)
+                              BlocProvider.of<SubcategoryBloc>(context)
                                   .add(FetchSubcategories(category.id));
                               Navigator.push(
                                 context,

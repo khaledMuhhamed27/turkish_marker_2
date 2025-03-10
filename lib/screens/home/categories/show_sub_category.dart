@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:turkesh_marketer/bloc/categories/bloc/categorries_bloc.dart';
+import 'package:turkesh_marketer/bloc/bloc/subcategories/bloc/subcategories_bloc.dart';
+import 'package:turkesh_marketer/bloc/bloc/subcategories/bloc/subcategories_state.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_state.dart';
 import 'package:turkesh_marketer/model/categories_modell.dart';
 import 'package:turkesh_marketer/screens/home/categories/show_select_categories.dart';
@@ -43,15 +44,15 @@ class ShowSubCategoryScrren extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Expanded(
-            child: BlocListener<CategoryBloc, CategoryState>(
+            child: BlocListener<SubcategoryBloc, SubcategoriesState>(
               listener: (context, state) {
                 if (state is CategoryLoading) {
                 } else if (state is CategoryError) {
                 } else {}
               },
-              child: BlocBuilder<CategoryBloc, CategoryState>(
+              child: BlocBuilder<SubcategoryBloc, SubcategoriesState>(
                 builder: (context, state) {
-                  if (state is CategoryLoading) {
+                  if (state is SubcategoriesLoading) {
                     return LoadingWidgt();
                   } else if (state is SubcategoriesLoaded) {
                     print("🟢 البيانات التي ستُعرض: ${state.subcategories}");
@@ -83,7 +84,7 @@ class ShowSubCategoryScrren extends StatelessWidget {
                         );
                       },
                     );
-                  } else if (state is CategoryError) {
+                  } else if (state is SubcategoriesError) {
                     return Center(child: Text("خطأ: ${state.message}"));
                   }
                   return Container();

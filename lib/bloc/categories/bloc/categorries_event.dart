@@ -8,12 +8,3 @@ abstract class CategoryEvent extends Equatable {
 }
 
 class LoadCategoriesEvent extends CategoryEvent {}
-
-class FetchSubcategories extends CategoryEvent {
-  final int parentId;
-
-  const FetchSubcategories(this.parentId);
-
-  @override
-  List<Object> get props => [parentId];
-}

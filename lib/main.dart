@@ -11,6 +11,7 @@ import 'package:turkesh_marketer/api/tender_service.dart';
 import 'package:turkesh_marketer/bloc/bloc/cooperation_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/requests_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/select_categories.dart/bloc/select_posts_bloc.dart';
+import 'package:turkesh_marketer/bloc/bloc/subcategories/bloc/subcategories_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/tender_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_event.dart';
@@ -38,6 +39,7 @@ void main() async {
   timeago.setLocaleMessages('short1', ShortTimeMessages());
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  final categories = CategoryRepository(apiService: CategoryApiService());
   final search = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
   final userRepository = UserRepository(UserService());
@@ -53,6 +55,7 @@ void main() async {
       path: 'assets/lang',
       fallbackLocale: Locale('en'),
       child: MyApp(
+        categoryRepository: categories,
         searchRepository: search,
         slectpost: slectpost,
         userRepository: userRepository,
@@ -66,6 +69,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final CategoryRepository categoryRepository;
   final SearchRepository searchRepository;
   final PostRepository slectpost;
   final UserRepository userRepository;
@@ -75,6 +79,7 @@ class MyApp extends StatelessWidget {
   final CompaniesRepository companiesRepository;
   const MyApp({
     super.key,
+    required this.categoryRepository,
     required this.searchRepository,
     required this.slectpost,
     required this.cooperationRespository,
@@ -105,10 +110,12 @@ class MyApp extends StatelessWidget {
           create: (context) => CooperationBloc(cooperationRespository),
         ),
         BlocProvider(
-          create: (context) => CategoryBloc(
-              repository: CategoryRepository(apiService: CategoryApiService()))
+          create: (context) => CategoryBloc(repository: categoryRepository)
             ..add(LoadCategoriesEvent()),
         ),
+        BlocProvider(
+            create: (context) =>
+                SubcategoryBloc(repository: categoryRepository)),
         BlocProvider(create: (context) => PostBloc(slectpost)),
         BlocProvider<UserBloc>(
           create: (context) => UserBloc(userRepository),
