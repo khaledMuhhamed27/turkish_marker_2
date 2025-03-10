@@ -154,6 +154,16 @@ class _MyProfileState extends State<MyProfile> {
                 iconUrl: 'assets/images/gtr.svg',
                 titleC: 'agents'.tr(),
               ),
+              // Verifecation Email
+              MyListTileF(
+                onTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => VereficationEmail()));
+                },
+                titleC: 'Verfication Email',
+              ),
 
               Padding(
                 padding: EdgeInsets.only(bottom: 120, top: 20),

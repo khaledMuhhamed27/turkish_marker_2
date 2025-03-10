@@ -36,6 +36,7 @@ class ImportSc extends StatelessWidget {
                       final tender = state.imports[index];
                       return MyCardList(
                         id: tender.id,
+                        importText: tender.typeText,
                         title: tender.title,
                         credits: tender.credit,
                         createdAt: tender.createdAt.toString(),

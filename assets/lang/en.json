@@ -114,5 +114,7 @@
     "log_yes": "Yes i'm sure",
     "log_cancel": "Cancel",
     "ara": "Arabic",
-    "eng": "English"
+    "eng": "English",
+    "passwo": "Password changed successfully!",
+    "con_pass": "The new password and confirmation do not match."
 }

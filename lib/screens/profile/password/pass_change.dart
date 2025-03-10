@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turkesh_marketer/constants/helpers.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
-import 'package:turkesh_marketer/widgets/my_input.dart';
+import 'package:turkesh_marketer/widgets/password_input.dart';
 
 class PassChangeScreen extends StatefulWidget {
   const PassChangeScreen({super.key});
@@ -33,7 +33,6 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
 
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    lpassword = prefs.getString('password');
     setState(() {
       token = prefs.getString('token');
       _passwordController.text = lpassword ?? "";
@@ -43,7 +42,7 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
   Future<void> _updatePassword() async {
     if (!_formKey.currentState!.validate()) return;
     if (_newPasswordController.text != _confirmPasswordController.text) {
-      _showSnackbar("كلمة المرور الجديدة وتأكيدها غير متطابقين", false);
+      _showSnackbar("con_pass".tr(), false);
       return;
     }
 
@@ -68,7 +67,7 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
         print(response.statusCode);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('password', _newPasswordController.text);
-        _showSnackbar("تم تغيير كلمة المرور بنجاح!", true);
+        _showSnackbar("passwo".tr(), true);
         _passwordController.clear();
         _newPasswordController.clear();
         _confirmPasswordController.clear();
@@ -114,28 +113,18 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
                     ),
                     SizedBox(height: 20),
                     NameTileInput(InputTile: "now_pass".tr()),
-                    MyInput(
+                    PasswordInput(
                       yourController: _passwordController,
-                      isPassword: false,
-                      yourHintText: "now_pass".tr(),
-                      yourValidator: (value) =>
-                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
                     SizedBox(height: 12),
                     NameTileInput(InputTile: "new_pass".tr()),
-                    MyInput(
+                    PasswordInput(
                       yourController: _newPasswordController,
-                      yourHintText: "new_pass".tr(),
-                      yourValidator: (value) =>
-                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
                     SizedBox(height: 12),
                     NameTileInput(InputTile: "con_new_pass".tr()),
-                    MyInput(
+                    PasswordInput(
                       yourController: _confirmPasswordController,
-                      yourHintText: "con_new_pass".tr(),
-                      yourValidator: (value) =>
-                          value!.isEmpty ? "requird_ino".tr() : null,
                     ),
                     SizedBox(height: 100),
                     MaterialButton(

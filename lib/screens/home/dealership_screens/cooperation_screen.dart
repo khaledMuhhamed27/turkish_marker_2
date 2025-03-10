@@ -34,6 +34,7 @@ class CooperationScreen extends StatelessWidget {
                       final importData = state.cooperationModel[index];
                       return MyCardList(
                         id: importData.id,
+                        importText: importData.typeText,
                         title: importData.title,
                         credits: importData.credit,
                         createdAt: importData.createdAt.toString(),
