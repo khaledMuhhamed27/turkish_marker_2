@@ -17,8 +17,8 @@ import 'package:turkesh_marketer/bloc/categories/bloc/categorries_bloc.dart';
 import 'package:turkesh_marketer/bloc/categories/bloc/categorries_event.dart';
 import 'package:turkesh_marketer/bloc/companies_bloc.dart';
 import 'package:turkesh_marketer/bloc/companies_event.dart';
+import 'package:turkesh_marketer/bloc/get_user_data/bloc/user_bloc.dart';
 import 'package:turkesh_marketer/bloc/theme_bloc.dart';
-import 'package:turkesh_marketer/bloc/user_data_bloc/bloc/user_data_bloc.dart';
 import 'package:turkesh_marketer/constants/created_at_intl.dart';
 import 'package:turkesh_marketer/cubit/local_cubit.dart';
 import 'package:turkesh_marketer/cubit/search/cubit/search_cubit.dart';
@@ -39,10 +39,10 @@ void main() async {
   timeago.setLocaleMessages('short1', ShortTimeMessages());
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  final user = UserRepository(userService: UserService());
   final categories = CategoryRepository(apiService: CategoryApiService());
   final search = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
-  final userRepository = UserRepository(UserService());
   final cooperationRepository = CooperationRespository(CooperationService());
   final importRepository = ImportRepository(ImportService());
   final tenderRepository =
@@ -55,10 +55,10 @@ void main() async {
       path: 'assets/lang',
       fallbackLocale: Locale('en'),
       child: MyApp(
+        userRepository: user,
         categoryRepository: categories,
         searchRepository: search,
         slectpost: slectpost,
-        userRepository: userRepository,
         cooperationRespository: cooperationRepository,
         importRepository: importRepository,
         tenderRepository: tenderRepository,
@@ -117,14 +117,14 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 SubcategoryBloc(repository: categoryRepository)),
         BlocProvider(create: (context) => PostBloc(slectpost)),
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(userRepository),
-        ),
+
         // Search
         BlocProvider(
           create: (context) => SearchCubit(searchRepository),
           child: SearchScreen(), // الصفحة التي تحتوي على واجهة البحث
         ),
+        BlocProvider(
+            create: (context) => UserBloc(userRepository: userRepository)),
       ],
       child: Builder(
         builder: (context) {

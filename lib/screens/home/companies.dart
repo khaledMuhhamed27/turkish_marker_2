@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turkesh_marketer/bloc/companies_bloc.dart';
 import 'package:turkesh_marketer/bloc/companies_event.dart';
 import 'package:turkesh_marketer/bloc/companies_state.dart';
-import 'package:turkesh_marketer/bloc/user_data_bloc/bloc/user_data_bloc.dart';
 import 'package:turkesh_marketer/screens/home/show_details_company.dart';
-import 'package:turkesh_marketer/screens/profile/user_info.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/circle_background.dart';
 import 'package:turkesh_marketer/widgets/loading_widgt.dart';
@@ -37,15 +35,7 @@ class CompaniesScreen2 extends StatelessWidget {
                   myLiftIcon: Icons.person_outline_outlined,
                   myRightButton: true,
                   onLeftIconTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BlocProvider.value(
-                          value: context.read<UserBloc>(),
-                          child: EditProfileScreen(),
-                        ),
-                      ),
-                    );
+                    Navigator.pushNamed(context, 'setting');
                   },
                   titleScreen: "nav_company".tr(),
                   onRightIconTap: () {

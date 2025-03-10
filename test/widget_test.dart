@@ -21,7 +21,7 @@ import 'package:turkesh_marketer/repository/search_repo.dart';
 void main() {
   final categories = CategoryRepository(apiService: CategoryApiService());
 
-  final userRepository = UserRepository(UserService());
+  final userRepository = UserRepository(userService: UserService());
   final searchRepository = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
   final cooperationRepository = CooperationRespository(CooperationService());

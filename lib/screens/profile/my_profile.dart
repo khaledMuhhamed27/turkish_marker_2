@@ -5,7 +5,7 @@ import 'package:turkesh_marketer/screens/auth/login.dart';
 import 'package:turkesh_marketer/screens/profile/password/pass_change.dart';
 import 'package:turkesh_marketer/screens/profile/select_lang_screen.dart';
 import 'package:turkesh_marketer/screens/profile/add_company.dart';
-import 'package:turkesh_marketer/screens/profile/user_info.dart';
+import 'package:turkesh_marketer/screens/profile/user/user_screen.dart';
 import 'package:turkesh_marketer/widgets/appbar.dart';
 import 'package:turkesh_marketer/widgets/my_list_tile.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +58,7 @@ class _MyProfileState extends State<MyProfile> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditProfileScreen(),
+                            builder: (context) => UserScreen(),
                           ),
                         );
                       },

@@ -1,46 +1,39 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:turkesh_marketer/model/get_user_data.dart';
+import 'package:turkesh_marketer/constants/helpers.dart';
 
 class UserService {
-  static const String baseUrl =
-      'https://turkish.weblayer.info/api/v1.0/get-user-data';
+  final String baseUrl = "https://turkish.weblayer.info/api/v1.0/get-user-data";
 
-  Future<UserModel?> fetchUserData() async {
+  Future<Map<String, dynamic>> fetchUserData(String email, String token) async {
+    final url = Uri.parse(baseUrl);
+
     try {
-      final prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('token');
-      String? email = prefs.getString('email');
-
-      if (token == null || email == null) {
-        throw Exception("Token or email not found in SharedPreferences");
-      }
-
       final response = await http.post(
-        Uri.parse(baseUrl),
+        url,
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
         },
-        body: {
-          'email': email,
-        },
+        body: jsonEncode({'email': email}),
       );
 
+      print("🔵 REQUEST URL: $url");
+      print("🟡 HEADERS: ${response.request?.headers}");
+      print("🟠 BODY: ${jsonEncode({'email': email})}");
+      print("🔴 RESPONSE STATUS: ${response.statusCode}");
+      print("🔴 RESPONSE BODY: ${response.body}");
+
+      final jsonResponse = jsonDecode(response.body);
+
       if (response.statusCode == 200) {
-        final Map<String, dynamic> data = json.decode(response.body);
-        if (data['success'] == true) {
-          return UserModel.fromJson(data['user']);
-        } else {
-          throw Exception("Failed to load user data");
-        }
+        return jsonResponse;
       } else {
-        throw Exception("Error: ${response.statusCode}");
+        throw Exception(transformErrors(jsonResponse));
       }
     } catch (e) {
-      print("Error fetching user data: $e");
-      return null;
+      throw Exception("⚠️ خطأ أثناء جلب البيانات: $e");
     }
   }
 }
