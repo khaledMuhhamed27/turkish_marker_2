@@ -7,6 +7,7 @@ import 'package:turkesh_marketer/api/request_service.dart';
 import 'package:turkesh_marketer/api/search_service.dart';
 import 'package:turkesh_marketer/api/show_select_categ_service.dart';
 import 'package:turkesh_marketer/api/tender_service.dart';
+import 'package:turkesh_marketer/api/updat_user_service.dart';
 import 'package:turkesh_marketer/main.dart';
 import 'package:turkesh_marketer/repository/all_categories_repo.dart';
 
@@ -17,10 +18,12 @@ import 'package:turkesh_marketer/repository/all_requests_repo.dart';
 import 'package:turkesh_marketer/repository/all_tender_repo.dart';
 import 'package:turkesh_marketer/repository/get_user_repository.dart';
 import 'package:turkesh_marketer/repository/search_repo.dart';
+import 'package:turkesh_marketer/repository/update_user_repo.dart';
 
 void main() {
   final categories = CategoryRepository(apiService: CategoryApiService());
-
+  final updateUserRepository =
+      UpdateUserRepository(userService: UpdateUserService());
   final userRepository = UserRepository(userService: UserService());
   final searchRepository = SearchRepository(SearchService());
   final slectpost = PostRepository(PostService());
@@ -32,6 +35,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(
       MyApp(
+        updateUserRepository: updateUserRepository,
         categoryRepository: categories,
         userRepository: userRepository,
         searchRepository: searchRepository,

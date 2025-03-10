@@ -25,7 +25,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
         Uri.parse('https://turkish.weblayer.info/api/v1.0/verify-email'),
         body: jsonEncode({
           'email': widget.email,
-          'otp': otpController.text,
+          'code': otpController.text,
         }),
         headers: {
           'accept': 'application/json',

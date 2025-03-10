@@ -10,7 +10,7 @@ class UserModel {
   final String? emailVerifiedAt;
   final String? userTypeText;
   final int? planId;
-  final String mobile;
+  final int mobile;
   final String? mobileIntro;
   final int countryId;
 
@@ -44,9 +44,13 @@ class UserModel {
       emailVerifiedAt: json['email_verified_at'],
       userTypeText: json['user_type_text'],
       planId: json['plan_id'],
-      mobile: json['mobile'],
-      mobileIntro: json['mobile_intro'],
-      countryId: json['country_id'],
+      mobile: json['mobile'] is int
+          ? json['mobile']
+          : int.tryParse(json['mobile'].toString()) ?? 0,
+      mobileIntro: json['mobile_intro']?.toString(), // يحول إلى String دائمًا
+      countryId: json['country_id'] is int
+          ? json['country_id']
+          : int.tryParse(json['country_id'].toString()) ?? 0,
     );
   }
 

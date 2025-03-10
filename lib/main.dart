@@ -8,6 +8,7 @@ import 'package:turkesh_marketer/api/request_service.dart';
 import 'package:turkesh_marketer/api/search_service.dart';
 import 'package:turkesh_marketer/api/show_select_categ_service.dart';
 import 'package:turkesh_marketer/api/tender_service.dart';
+import 'package:turkesh_marketer/api/updat_user_service.dart';
 import 'package:turkesh_marketer/bloc/bloc/cooperation_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/requests_bloc.dart';
 import 'package:turkesh_marketer/bloc/bloc/select_categories.dart/bloc/select_posts_bloc.dart';
@@ -19,6 +20,7 @@ import 'package:turkesh_marketer/bloc/companies_bloc.dart';
 import 'package:turkesh_marketer/bloc/companies_event.dart';
 import 'package:turkesh_marketer/bloc/get_user_data/bloc/user_bloc.dart';
 import 'package:turkesh_marketer/bloc/theme_bloc.dart';
+import 'package:turkesh_marketer/bloc/update/bloc/update_user_bloc.dart';
 import 'package:turkesh_marketer/constants/created_at_intl.dart';
 import 'package:turkesh_marketer/cubit/local_cubit.dart';
 import 'package:turkesh_marketer/cubit/search/cubit/search_cubit.dart';
@@ -30,6 +32,7 @@ import 'package:turkesh_marketer/repository/all_requests_repo.dart';
 import 'package:turkesh_marketer/repository/all_tender_repo.dart';
 import 'package:turkesh_marketer/repository/get_user_repository.dart';
 import 'package:turkesh_marketer/repository/search_repo.dart';
+import 'package:turkesh_marketer/repository/update_user_repo.dart';
 import 'package:turkesh_marketer/screens/profile/my_profile.dart';
 import 'package:turkesh_marketer/screens/search/search_screen.dart';
 import 'package:turkesh_marketer/screens/splash.dart';
@@ -39,6 +42,7 @@ void main() async {
   timeago.setLocaleMessages('short1', ShortTimeMessages());
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  final updateUser = UpdateUserRepository(userService: UpdateUserService());
   final user = UserRepository(userService: UserService());
   final categories = CategoryRepository(apiService: CategoryApiService());
   final search = SearchRepository(SearchService());
@@ -55,6 +59,7 @@ void main() async {
       path: 'assets/lang',
       fallbackLocale: Locale('en'),
       child: MyApp(
+        updateUserRepository: updateUser,
         userRepository: user,
         categoryRepository: categories,
         searchRepository: search,
@@ -69,6 +74,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final UpdateUserRepository updateUserRepository;
   final CategoryRepository categoryRepository;
   final SearchRepository searchRepository;
   final PostRepository slectpost;
@@ -79,6 +85,7 @@ class MyApp extends StatelessWidget {
   final CompaniesRepository companiesRepository;
   const MyApp({
     super.key,
+    required this.updateUserRepository,
     required this.categoryRepository,
     required this.searchRepository,
     required this.slectpost,
@@ -124,7 +131,12 @@ class MyApp extends StatelessWidget {
           child: SearchScreen(), // الصفحة التي تحتوي على واجهة البحث
         ),
         BlocProvider(
-            create: (context) => UserBloc(userRepository: userRepository)),
+          create: (context) => UserBloc(userRepository: userRepository),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UpdateUserBloc(userRepository: updateUserRepository),
+        ),
       ],
       child: Builder(
         builder: (context) {

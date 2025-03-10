@@ -19,12 +19,6 @@ class UserService {
         body: jsonEncode({'email': email}),
       );
 
-      print("🔵 REQUEST URL: $url");
-      print("🟡 HEADERS: ${response.request?.headers}");
-      print("🟠 BODY: ${jsonEncode({'email': email})}");
-      print("🔴 RESPONSE STATUS: ${response.statusCode}");
-      print("🔴 RESPONSE BODY: ${response.body}");
-
       final jsonResponse = jsonDecode(response.body);
 
       if (response.statusCode == 200) {

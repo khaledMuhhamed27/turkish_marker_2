@@ -8,10 +8,12 @@ class MyInput extends StatelessWidget {
   final TextInputType? yourTextInputType;
   final bool? isPassword;
   final int? minLine;
+  final bool? enable;
   final String? Function(String?)? yourValidator;
 
   const MyInput({
     super.key,
+    this.enable,
     required this.yourController,
     required this.yourHintText,
     this.yourSurfsIcon,
@@ -28,7 +30,7 @@ class MyInput extends StatelessWidget {
         TextFormField(
       maxLines: minLine,
       validator: yourValidator,
-
+      enabled: enable,
       controller: yourController,
       cursorColor: Colors.grey,
       keyboardType: yourTextInputType,

@@ -13,6 +13,7 @@ import 'package:turkesh_marketer/screens/auth/verify_email.dart';
 import 'package:turkesh_marketer/widgets/input_name.dart';
 import 'package:turkesh_marketer/widgets/long_text.dart';
 import 'package:turkesh_marketer/widgets/my_input.dart';
+import 'package:turkesh_marketer/widgets/select_country.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -386,44 +387,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       // Select Countr
                       SizedBox(height: 20),
                       NameTileInput(InputTile: "select_cry".tr()),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "requird_ino".tr();
-                          }
-                          return null;
-                        },
-                        controller: countryController,
-                        readOnly: true,
-                        onTap: _selectCountry,
-                        decoration: InputDecoration(
-                          hintText: 'select_cry_yoour'.tr(),
-                          suffixIcon: Icon(Icons.arrow_drop_down),
-                          // Erorr
-                          errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.red,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(12)),
-                          // focused error border
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(12)),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
+                      SelectCountryInput(
+                          controller: countryController, onTap: _selectCountry),
+
                       SizedBox(height: 20),
                       NameTileInput(InputTile: "phon_num".tr()),
                       PhoneNumberInput(

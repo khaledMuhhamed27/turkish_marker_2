@@ -6,10 +6,12 @@ class PhoneNumberInput extends StatefulWidget {
 
   final String countryCode;
   final String phoneCode;
+  final bool? enable;
   final String? Function(String?)? validator;
 
   const PhoneNumberInput({
     super.key,
+    this.enable,
     required this.controller,
     required this.countryCode,
     required this.phoneCode,
@@ -45,19 +47,37 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
+            border: Border.all(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? widget.enable == true
+                        ? Colors.grey
+                        : Colors.grey.shade800
+                    : widget.enable == true
+                        ? Colors.grey
+                        : Colors.grey.shade300),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
             _selectedPhoneCode,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 16,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? widget.enable == true
+                      ? Colors.white
+                      : Colors.grey.shade500
+                  : widget.enable == true
+                      ? Colors.black
+                      : Colors.grey.shade500,
+            ),
           ),
         ),
         SizedBox(width: 4),
         Expanded(
           child: TextFormField(
+            enabled: widget.enable,
+            cursorColor: Colors.grey,
             controller: widget.controller,
             keyboardType: TextInputType.phone,
             validator: widget.validator,
