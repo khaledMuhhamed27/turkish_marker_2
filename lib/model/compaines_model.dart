@@ -46,7 +46,11 @@ class CompaniesModel {
       details: json['profile']?['details'] ?? 'No Details',
       categoryId: json['categorey_id']?.toString(),
       parentId: json['parent_id']?.toString(),
-      cooperationSubtype: json['company_type_id']?.toString(),
+      cooperationSubtype: json['company_type_id'] != null &&
+              json['company_type_id'].toString().isNotEmpty
+          ? json['company_type_id'].toString()
+          : null,
+
       tenderSubtype: 'General', // ❗لا يوجد في البيانات، وضعنا قيمة افتراضية
       companynameText:
           json['title'], // ❗استخدمنا العنوان لأنه لا يوجد companyname_text
@@ -56,7 +60,7 @@ class CompaniesModel {
           : "", // ✅ معالجة الصورة
       createdAt:
           DateTime.now(), // ❗لا يوجد تاريخ في الـ API، استخدمنا التاريخ الحالي
-      typeText: json['company_type_id'] ?? 'Unknown', // ❗استخدمنا نوع الشركة
+      typeText: json['company_type_id'] ?? '', // ❗استخدمنا نوع الشركة
 
       isSponsored: json['is_sponsored'] ?? 0, // ✅ تمت إضافته من الـ API
     );

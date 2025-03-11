@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:turkesh_marketer/model/compaines_model.dart';
+import 'package:turkesh_marketer/widgets/import_container.dart';
 
 class ShowDetailsCompany extends StatelessWidget {
   // ✅ استقبل عنصر واحد فقط
@@ -47,6 +48,8 @@ class ShowDetailsCompany extends StatelessWidget {
                         ),
                       ),
               ),
+              const SizedBox(height: 10),
+              ImportContainer(importType: companiesModel.typeText),
               const SizedBox(height: 16),
               Text(
                 companiesModel.title, // ✅ عرض العنوان الصحيح
@@ -56,33 +59,33 @@ class ShowDetailsCompany extends StatelessWidget {
               SizedBox(height: 20),
               Row(
                 children: [
-                  Expanded(
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xFFD0D5DD)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Row(
                       children: [
-                        Icon(Icons.visibility),
-                        SizedBox(width: 5),
-                        Text("0 views"), // ✅ يمكنك تحسينه لاحقًا
+                        SvgPicture.asset("assets/images/setting.svg"),
+                        Text(
+                          "dd Credits", // ✅ عرض الرصيد
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Color(0xFF475467),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: Row(children: [
-                      Icon(Icons.calendar_today),
-                      SizedBox(width: 5),
-                      Text(
-                        DateFormat('yyyy-MM-dd').format(DateTime.parse(
-                            companiesModel.createdAt.toString())),
-                      ),
-                    ]),
-                  ),
+                  )
                 ],
               ),
               SizedBox(height: 20),
               Row(
                 children: [
-                  SvgPicture.asset("assets/images/cikl.svg"),
                   Text(
-                    "${companiesModel.parentId} Credits", // ✅ عرض الرصيد
+                    "${companiesModel.cooperationSubtype} ", // ✅ عرض الرصيد
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -92,7 +95,7 @@ class ShowDetailsCompany extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              Text(companiesModel.details,
+              Text(companiesModel.tenderSubtype,
                   style: const TextStyle(fontSize: 16)), // ✅ عرض التفاصيل
               SizedBox(height: 150),
             ],

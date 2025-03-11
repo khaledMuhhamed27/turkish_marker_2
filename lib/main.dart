@@ -104,8 +104,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => ThemeBloc()..add(GetCurrentThemeEvent())),
         BlocProvider(
-          create: (context) =>
-              TenderBloc(tenderRepository), // تم تمرير الـ tenderRepository هنا
+          create: (context) => TenderBloc(tenderRepository),
         ),
         BlocProvider(
             create: (context) =>

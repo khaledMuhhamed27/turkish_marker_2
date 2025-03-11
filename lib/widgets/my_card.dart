@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:turkesh_marketer/model/compaines_model.dart';
+import 'package:turkesh_marketer/widgets/import_container.dart';
 
 // ignore: must_be_immutable
 class MyProfCard extends StatefulWidget {
@@ -37,7 +39,7 @@ class _MyProfCardState extends State<MyProfCard> {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  "Sponsored",
+                  "sponsor".tr(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -49,7 +51,7 @@ class _MyProfCardState extends State<MyProfCard> {
 
           // ✅ البطاقة الرئيسية
           Container(
-            height: 358,
+            height: 300,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               border: Border.all(
@@ -60,7 +62,12 @@ class _MyProfCardState extends State<MyProfCard> {
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            margin: EdgeInsets.all(12),
+            margin: EdgeInsets.only(
+              right: 12,
+              left: 12,
+              top: 12,
+              bottom: 0,
+            ),
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
             child: Stack(
               clipBehavior: Clip.none,
@@ -71,7 +78,7 @@ class _MyProfCardState extends State<MyProfCard> {
                   left: 0,
                   right: 0,
                   child: SizedBox(
-                    height: 152,
+                    height: 176,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: widget.companiesModel.photo.isNotEmpty
@@ -111,7 +118,7 @@ class _MyProfCardState extends State<MyProfCard> {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "Sponsored",
+                        "sponsor".tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -126,7 +133,7 @@ class _MyProfCardState extends State<MyProfCard> {
                   left: 0,
                   right: 0,
                   bottom: 12,
-                  height: 150,
+                  height: 100,
                   child: TextsContainer(
                     companyModel: widget.companiesModel,
                   ),
@@ -149,11 +156,13 @@ class TextsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      height: 100,
+      padding: EdgeInsets.only(right: 8, left: 8, top: 10, bottom: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ImportContainer(
+              importType: companyModel.cooperationSubtype.toString()),
+          SizedBox(height: 10),
           Text(
             companyModel.title,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -161,34 +170,6 @@ class TextsContainer extends StatelessWidget {
             maxLines: 1,
           ),
           SizedBox(height: 5),
-          Text(
-            companyModel.details,
-            style: TextStyle(color: Colors.grey[600]),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 5),
-          Row(
-            children: [
-              Icon(Icons.location_on, size: 16, color: Colors.grey),
-              SizedBox(width: 4),
-              Text(
-                companyModel.status,
-                style: TextStyle(color: Colors.grey[600]),
-              ),
-            ],
-          ),
-          SizedBox(height: 5),
-          Row(
-            children: [
-              Icon(Icons.category, size: 16, color: Colors.grey),
-              SizedBox(width: 4),
-              Text(
-                '#${companyModel.createdAt}',
-                style: TextStyle(color: Colors.blue),
-              ),
-            ],
-          ),
         ],
       ),
     );

@@ -116,5 +116,6 @@
     "ara": "Arabic",
     "eng": "English",
     "passwo": "Password changed successfully!",
-    "con_pass": "The new password and confirmation do not match."
+    "con_pass": "The new password and confirmation do not match.",
+    "sponsor": "Sponsored"
 }

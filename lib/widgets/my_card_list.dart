@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turkesh_marketer/constants/base_url.dart';
 import 'package:turkesh_marketer/constants/created_at_intl.dart';
+import 'package:turkesh_marketer/widgets/import_container.dart';
 
 // ignore: must_be_immutable
 class MyCardList extends StatelessWidget {
@@ -82,45 +83,8 @@ class MyCardList extends StatelessWidget {
                   Row(
                     children: [
                       // 1 Container
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Color(0xFF333333)
-                              : Color(0xFFFEF3F2),
-                          border: Border.all(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.teal
-                                    : Color(0xFFFECDCA),
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/arwob.svg",
-                              // ignore: deprecated_member_use
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.teal
-                                  : Color(0xFFB42318),
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              importText.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Theme.of(context).brightness ==
-                                        Brightness.dark
-                                    ? Colors.teal
-                                    : Color(0xFFB42318),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // import container
+                      ImportContainer(importType: importText.toString()),
                       SizedBox(width: 10),
                       // 2 Container
                     ],
