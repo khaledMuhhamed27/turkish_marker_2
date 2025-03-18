@@ -117,5 +117,10 @@
     "eng": "English",
     "passwo": "Password changed successfully!",
     "con_pass": "The new password and confirmation do not match.",
-    "sponsor": "Sponsored"
+    "sponsor": "Sponsored",
+    "aslanlar": "ASLANLAR AKDENIZ INSAAT LTD.",
+    "contact_for": "Contact Information",
+    "product": "Products",
+    "expo": "Exporter",
+    "mano": "Manufactorer"
 }
